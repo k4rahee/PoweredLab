@@ -2502,7 +2502,7 @@ input:focus-visible,
    ═══════════════════════════════════════════════════════════ */
 :root {
   --g:      clamp(24px, 5vw, 72px);   /* 페이지 좌우 여백 */
-  --sv:     clamp(56px, 7vw, 88px);   /* 섹션 상하 패딩 */
+  --sv:     clamp(44px, 5.5vw, 64px);   /* 섹션 상하 패딩 */
   --cp:     clamp(18px, 2vw, 24px);   /* 카드 내부 패딩 */
   --cg:     clamp(32px, 4vw, 56px);   /* 컬럼 간격 */
   --lh:     1.55;
@@ -2546,12 +2546,12 @@ input:focus-visible,
   line-height: var(--lh);
   max-width: none;
 }
-.body-copy--sub { max-width: none; font-size: 13px; line-height: 1.55; margin-top: 0.7em; padding-top: 0.7em; }
-.body-copy + .body-copy { margin-top: 0.7em; }
-.body-copy--lead + .body-copy { margin-top: 0.7em; }
+.body-copy--sub { max-width: none; font-size: 13px; line-height: 1.55; margin-top: 0.6em; padding-top: 0.5em; }
+.body-copy + .body-copy { margin-top: 0.6em; }
+.body-copy--lead + .body-copy { margin-top: 0.6em; }
 
 /* ── label ── */
-.label { margin-bottom: 8px; }
+.label { margin-bottom: 0; }
 
 /* ── stat 크기 ── */
 .stat__value { font-size: clamp(28px, 3.5vw, 42px); margin-bottom: 6px; }
@@ -2612,7 +2612,7 @@ input:focus-visible,
   margin-bottom: 0;
   flex: 1;
 }
-.spec-table { margin-top: auto; border-top: 1px solid var(--color-border-subtle); }
+.spec-table { border-top: 1px solid var(--color-border-subtle); }
 .spec-row   { padding: 10px 0; }
 .spec-row__val { font-size: 13px; }
 
@@ -2643,7 +2643,7 @@ input:focus-visible,
 /* Timeline */
 .timeline__row {
   grid-template-columns: 80px 36px 1fr;
-  padding: 18px 0;
+  padding: 12px 0;
   gap: 16px;
 }
 .timeline__year        { font-size: 12px; color: var(--color-text-tertiary); }
@@ -2660,8 +2660,6 @@ input:focus-visible,
 .spec-table { margin-top: 20px; border-top: 1px solid var(--color-border-subtle); }
 
 /* ── body-copy 사이 간격 (inline style 제거 후 담당) ── */
-.body-copy + .body-copy       { margin-top: 10px; }
-.body-copy--lead + .body-copy { margin-top: 10px; }
 
 /* ── 반응형 ── */
 @media (max-width: 1024px) {
@@ -2707,7 +2705,7 @@ input:focus-visible,
   </a>
   <ul class="nav__links" role="list">
     <li><a href="#about" class="nav__link">About</a></li>
-    <li><a href="#projects" class="nav__link">References</a></li>
+    <li><a href="#projects" class="nav__link">Projects</a></li>
     <li><a href="#quantum" class="nav__link">Quantum</a></li>
     <li><a href="#technology" class="nav__link">Technology</a></li>
     <li><a href="#history" class="nav__link">History</a></li>
@@ -2724,7 +2722,7 @@ input:focus-visible,
 </nav>
 <ul class="nav__drawer" id="js-drawer" role="list" aria-label="모바일 네비게이션">
   <li><a href="#about"      class="nav__drawer-link">About</a></li>
-  <li><a href="#projects"   class="nav__drawer-link">References</a></li>
+  <li><a href="#projects"   class="nav__drawer-link">Projects</a></li>
   <li><a href="#quantum"    class="nav__drawer-link">Quantum</a></li>
   <li><a href="#technology" class="nav__drawer-link">Technology</a></li>
   <li><a href="#history"    class="nav__drawer-link">History</a></li>
@@ -2753,7 +2751,7 @@ input:focus-visible,
         <svg viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" stroke-width="1.2"/></svg>
       </a>
       <a href="#projects" class="btn-secondary">
-        레퍼런스 보기
+        Projects 보기
       </a>
     </div>
   </div>
@@ -3133,7 +3131,7 @@ input:focus-visible,
       <div class="proj-cta-banner__inner">
         <div class="proj-cta-banner__left">
           <span class="label" style="margin-bottom:var(--space-3);">프로젝트 포트폴리오</span>
-          <h3 class="proj-cta-banner__title">구축형 프로젝트와<br>자체 SaaS 레퍼런스</h3>
+          <h3 class="proj-cta-banner__title">구축형 프로젝트와<br>자체 SaaS 제품</h3>
           <p class="proj-cta-banner__sub">기업 고객과 투자자가 확인해야 할 것은 “무엇을 만들 수 있는가”입니다. L1 블록체인 구축, QRNG SaaS, 글로벌 DEX, 신약 후보 선별 플랫폼까지 실제 설계·개발·운영 이력을 정리했습니다.</p>
         </div>
         <div class="proj-cta-banner__right">
@@ -3154,7 +3152,7 @@ input:focus-visible,
             </div>
           </div>
           <button class="proj-cta-banner__btn" id="js-proj-banner-btn">
-            레퍼런스 전체 보기
+            Projects 전체 보기
             <svg viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" stroke-width="1.2"/></svg>
           </button>
         </div>
@@ -3322,7 +3320,7 @@ input:focus-visible,
         </svg>
       </a>
       <a href="#projects" class="cta-section__cta-button">
-        레퍼런스 확인하기
+        Projects 확인하기
         <svg viewBox="0 0 18 18" fill="none">
           <path d="M3 9H15M15 9L10 4M15 9L10 14" stroke="currentColor" stroke-width="1.2"/>
         </svg>
@@ -3674,7 +3672,7 @@ input:focus-visible,
       id:'qtc', badge:'주요 프로젝트', cat:'blockchain', icon:'QTC',
       name:'QuantumChain', client:'맥스피아 ICT',
       tagline:'양자컴퓨터 PoC를 코어 레벨에서 통합한 L1 블록체인 생태계',
-      status:'Completed', nda:false, url:'https://www.quantumchain.it/',
+      status:'Completed', nda:false, url:'https://www.quantumchain.it/', screenshot:'https://api.microlink.io/?url=https://www.quantumchain.it/&screenshot=true&meta=false&embed=screenshot.url',
       overview:`QTHash PoW 알고리즘을 자체 설계한 L1 블록체인. 양자 컴퓨터 채굴 노드 샘플링을 코어 레벨에서 구현하여 양자 컴퓨팅과 블록체인 합의 메커니즘을 결합하는 독자적 시도. 마이닝풀·DEX·NFT·스테이블 코인·메신저까지 생태계 전 영역의 풀스택을 자력으로 구축.`,
       features:['코어 블록체인 (QTHash PoW 알고리즘 자체 설계)','양자 컴퓨터 채굴 노드 샘플링 코드','마이닝풀 인프라 (Stratum, 다중 리전, PPLNS)','지갑 및 노드 API (JSON-RPC, Swagger/OpenAPI)','블록 익스플로러','DEX (탈중앙화 거래소)','NFT 발행·거래','스테이블 코인','블록체인 기반 메신저 (E2E 암호화)','백업 노드 시스템 (RockDB 최적화)','LBank 글로벌 거래소 상장 지원'],
       techs:['Rust / C++','Node.js','React','RockDB','Stratum Protocol','JSON-RPC','Swagger / OpenAPI'],
@@ -3686,7 +3684,7 @@ input:focus-visible,
       id:'sg', badge:'주요 프로젝트', cat:'blockchain', icon:'SG',
       name:'SaseulGold', client:'맥스피아 ICT',
       tagline:'결제·송금에 특화된 L1 블록체인 — 코어부터 모바일 지갑·DEX·채굴풀까지 풀스택 단독 구축',
-      status:'Completed', nda:false, url:'https://saseulgold.org/',
+      status:'Completed', nda:false, url:'https://saseulgold.org/', screenshot:'https://api.microlink.io/?url=https://saseulgold.org/&screenshot=true&meta=false&embed=screenshot.url',
       overview:`결제·송금 특화 블록체인으로, 코어부터 모바일·웹 지갑, DEX, 채굴풀, 익스플로러까지 사용자 접점 전체를 파워드랩이 단독 구축. XT.com(글로벌 top 30권 CEX, 210개국 이상) 상장으로 시장 유통성 확보.`,
       features:['코어 블록체인 (결제·송금 최적화 트랜잭션 구조)','채굴풀 인프라','블록 익스플로러','DEX (swap.saseulgold.org)','모바일 지갑 (Android / iOS 네이티브)','웹 지갑 (wallet.saseulgold.org)','NFT 기능','백업 노드 시스템 및 API','XT.com 글로벌 거래소 상장 지원'],
       techs:['Rust / C++','React Native','Node.js','RockDB'],
@@ -3698,7 +3696,7 @@ input:focus-visible,
       id:'gatchable', badge:'주요 프로젝트', cat:'blockchain', icon:'GTC',
       name:'Gatchable', client:'자사 운영',
       tagline:'양자 난수 기반 블록체인 온체인 검증 RNG SDK 및 플랫폼 — 인하대학교 초기창업 패키지 수행',
-      status:'운영 중', nda:false, url:'https://gatchable.com/',
+      status:'운영 중', nda:false, url:'https://gatchable.com/', screenshot:'https://api.microlink.io/?url=https://gatchable.com/&screenshot=true&meta=false&embed=screenshot.url',
       overview:`양자 난수 기반 블록체인 검증 가능 RNG 플랫폼. Commit-Reveal 방식 온체인 검증으로 모든 추첨 결과를 블록체인에서 공개 검증. 인하대학교 초기창업 패키지 수행. 서비스 운영 중.`,
       features:['양자 / 고전 RNG 병행 선택','Commit-Reveal 방식 온체인 검증','확률 분포 기반 게임 메커니즘 (가중 확률, 커스텀 분포)','API / SDK (외부 서비스 즉시 통합)','대시보드 기반 관리 시스템','온체인 검증 조회 시스템','Draw Numbers 인터랙티브 데모','엔터프라이즈급 인프라 (99.99% 가동률)'],
       techs:['Python','Node.js','React','Blockchain','QRNG API'],
@@ -3819,60 +3817,69 @@ input:focus-visible,
   // 리사이즈/모달 열림 시 스케일 재계산
   window.addEventListener('resize', updatePreviewScale, { passive: true });
 
-  function tryLoadIframe(url) {
+  function tryLoadIframe(url, screenshot) {
     resetPreview();
     if (urlEl) urlEl.textContent = url;
     if (openEl) { openEl.href = url; openEl.style.display = 'inline-flex'; }
     if (blockedLink) blockedLink.href = url;
-
     clearTimeout(iframeTimer);
-
-    // 스케일을 먼저 계산하고 src 설정
     updatePreviewScale();
 
-    // Set src
-    iframeEl.src = url;
+    // 스크린샷이 있으면 먼저 이미지로 보여줌
+    if (screenshot) {
+      const stage = previewEl.querySelector('.pp__preview-stage');
+      // 기존 스크린샷 이미지 제거
+      const old = stage && stage.querySelector('.pp__screenshot-img');
+      if (old) old.remove();
 
-    // If iframe loads successfully, show it
+      if (stage) {
+        const img = document.createElement('img');
+        img.className = 'pp__screenshot-img';
+        img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;border:none;';
+        img.src = screenshot;
+        img.alt = 'Site preview';
+        img.onload = () => {
+          loaderEl.classList.add('hidden');
+        };
+        img.onerror = () => {
+          img.remove();
+          // 스크린샷도 실패 시 iframe 시도
+          _loadIframe(url);
+        };
+        stage.appendChild(img);
+      }
+
+      // iframe도 백그라운드에서 시도 — 성공 시 이미지 위에 iframe으로 교체
+      setTimeout(() => _loadIframe(url, true), 200);
+      return;
+    }
+
+    _loadIframe(url);
+  }
+
+  function _loadIframe(url, replaceScreenshot) {
+    iframeEl.src = url;
     iframeEl.onload = function() {
       clearTimeout(iframeTimer);
-      try {
-        // Try accessing contentDocument — throws if cross-origin blocked
-        // This won't work for cross-origin, but we can check for blank page
-        void iframeEl.contentDocument;
-        // If we get here with X-Frame-Options, the page is blank/error
-        // Use a timing heuristic: if load fired very fast (< 200ms), likely blocked
-      } catch(e) {}
-      // Optimistically show iframe — browser blocks display automatically if X-Frame-Options
       loaderEl.classList.add('hidden');
       iframeEl.classList.add('loaded');
+      // iframe 성공 시 스크린샷 이미지 제거
+      const stage = previewEl.querySelector('.pp__preview-stage');
+      const img = stage && stage.querySelector('.pp__screenshot-img');
+      if (img) img.remove();
     };
-
     iframeEl.onerror = function() {
       clearTimeout(iframeTimer);
       loaderEl.classList.add('hidden');
-      blockedEl.classList.add('visible');
+      if (!previewEl.querySelector('.pp__screenshot-img')) blockedEl.classList.add('visible');
     };
-
-    // Timeout fallback: if no load event after 8s, assume blocked
     iframeTimer = setTimeout(() => {
       if (!iframeEl.classList.contains('loaded')) {
         loaderEl.classList.add('hidden');
-        blockedEl.classList.add('visible');
+        // 스크린샷이 있으면 그냥 두고, 없으면 blocked 표시
+        if (!previewEl.querySelector('.pp__screenshot-img')) blockedEl.classList.add('visible');
       }
-    }, 8000);
-
-    // Secondary check: listen for message from iframe if it supports postMessage
-    // Also watch for CSP/XFO errors via securitypolicyviolation
-    window.addEventListener('securitypolicyviolation', function onCspErr(e) {
-      if (e.blockedURI && e.blockedURI.includes(new URL(url).hostname)) {
-        clearTimeout(iframeTimer);
-        loaderEl.classList.add('hidden');
-        iframeEl.classList.remove('loaded');
-        blockedEl.classList.add('visible');
-        window.removeEventListener('securitypolicyviolation', onCspErr);
-      }
-    });
+    }, 6000);
   }
 
   /* ── Populate sidebar list ── */
@@ -3985,7 +3992,7 @@ input:focus-visible,
       privateEl.classList.add('visible');
       if (urlEl) urlEl.textContent = '';
     } else {
-      tryLoadIframe(p.url);
+      tryLoadIframe(p.url, p.screenshot || null);
     }
   }
 
