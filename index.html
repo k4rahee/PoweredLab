@@ -73,7 +73,7 @@ body {
   font-family: var(--font-body);
   font-size: var(--text-base);
   font-weight: 400;
-  line-height: 1.85;
+  line-height: 1.55;
   letter-spacing: 0;           /* 한글에 letter-spacing 제거 */
   overflow-x: hidden;
   word-break: keep-all;
@@ -332,11 +332,62 @@ input:focus-visible,
 /* ═══════════════════════════════════════════
    SHARED
    ═══════════════════════════════════════════ */
-/* .section, .label, .heading-xl, .body-copy* → UNIFIED SYSTEM으로 통합 */
+.section { padding: var(--section-gap) var(--page-gutter); }
 .section--alt { background: var(--color-surface-subtle); }
-.section__inner { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--page-gutter); }
+.section__inner { max-width: var(--max-width); margin: 0 auto; }
+
+.label {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--color-accent); margin-bottom: var(--space-5); opacity: 0.9;
+}
+.label::before {
+  content: ''; display: block; width: 20px; height: 1px;
+  background: var(--color-accent); opacity: 0.7;
+}
+
+.heading-xl {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4.5vw, 56px);
+  font-weight: 300; letter-spacing: 0.02em;
+  line-height: 1.1; text-transform: uppercase; color: #fff;
+  word-break: keep-all;
+}
+
+.body-copy {
+  font-family: var(--font-body); font-size: var(--text-base);
+  font-weight: 400; color: var(--color-text-secondary);
+  line-height: 1.78; max-width: 680px;
+  word-break: keep-all; letter-spacing: 0;
+}
+.body-copy--lead {
+  font-size: clamp(18px, 1.7vw, 21px); font-weight: 500;
+  color: #fff; line-height: 1.55; word-break: keep-all; letter-spacing: 0;
+  max-width: 680px;
+}
+.body-copy--sub {
+  font-size: 13px; color: var(--color-text-muted); line-height: 1.7;
+  max-width: 580px; letter-spacing: 0;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border-subtle);
+  margin-top: var(--space-2);
+}
+
 .divider { border: none; border-top: 1px solid var(--color-border-subtle); margin: 0; }
 
+/* ═══════════════════════════════════════════
+   ABOUT
+   ═══════════════════════════════════════════ */
+.about__grid {
+  display: grid; grid-template-columns: 2fr 3fr;
+  gap: var(--col-gap);
+  align-items: start;
+  margin-bottom: var(--space-10);
+}
+.about__grid > div:last-child {
+  padding-top: var(--space-4);
+}
 
 /* ═══════════════════════════════════════════
    WHY QUANTUM — interactive comparison
@@ -435,8 +486,8 @@ input:focus-visible,
 }
 .why-quantum__side p {
   font-family: var(--font-body); font-size: var(--text-sm);
-  color: var(--color-text-secondary); line-height: 1.85;
-  margin-top: var(--space-3); word-break: keep-all;
+  color: var(--color-text-secondary); line-height: 1.55;
+  margin-top: 0.5em; word-break: keep-all;
 }
 
 /* ═══════════════════════════════════════════
@@ -495,12 +546,21 @@ input:focus-visible,
 .principle__body {
   font-family: var(--font-body); font-size: var(--text-base);
   font-weight: 400; color: var(--color-text-secondary);
-  line-height: 1.85; word-break: keep-all; letter-spacing: 0;
+  line-height: 1.55; word-break: keep-all; letter-spacing: 0;
 }
 
 /* ═══════════════════════════════════════════
    QUANTUM TRACKS — 두 갈래
    ═══════════════════════════════════════════ */
+.principles__intro {
+  display: grid; grid-template-columns: 2fr 3fr;
+  gap: var(--col-gap); align-items: start;
+  margin-bottom: var(--space-9);
+}
+.principles__intro > div:last-child {
+  padding-top: var(--space-4);
+}
+
 .tracks {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -556,7 +616,7 @@ input:focus-visible,
 .track__body {
   font-family: var(--font-body);
   font-size: var(--text-base);
-  line-height: 1.85;
+  line-height: 1.55;
   color: var(--color-text-secondary);
   margin-bottom: var(--space-6);
   max-width: 100%;
@@ -718,7 +778,7 @@ input:focus-visible,
 .product-card__desc {
   font-family: var(--font-body); font-size: var(--text-sm);
   font-weight: 400; color: var(--color-text-secondary);
-  line-height: 1.85; flex: 1; word-break: keep-all; letter-spacing: 0;
+  line-height: 1.55; flex: 1; word-break: keep-all; letter-spacing: 0;
 }
 .product-card__meta {
   margin-top: var(--space-5); padding-top: var(--space-4);
@@ -741,60 +801,94 @@ input:focus-visible,
 /* ═══════════════════════════════════════════
    TECHNOLOGY
    ═══════════════════════════════════════════ */
+.tech__grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: var(--col-gap); align-items: center;
+}
 .tech__visual-wrap {
-  position: relative;
-  border: 1px solid var(--color-border-default);
+  position: relative; height: 540px;
+  border: 1px solid var(--color-border-subtle);
   background: var(--color-surface-subtle);
   overflow: hidden;
-  /* 높이는 .tech__grid 행 높이에 stretch로 맞춤 */
-  align-self: stretch;
 }
-.tech__visual-wrap canvas { width: 100%; height: 100%; display: block; }
+.tech__visual-wrap canvas { width: 100%; height: 100%; }
 .tech__visual-overlay {
-  position: absolute; top: 20px; left: 20px;
-  display: flex; flex-direction: column; gap: 6px; z-index: 2;
+  position: absolute; top: var(--space-5); left: var(--space-5);
+  display: flex; flex-direction: column; gap: var(--space-2); z-index: 2;
 }
 .tech__visual-tag {
   display: inline-block;
   font-family: var(--font-mono); font-size: 10px;
-  letter-spacing: 0.12em; text-transform: uppercase;
+  letter-spacing: 1.5px; text-transform: uppercase;
   color: var(--color-text-tertiary);
-  padding: 4px 10px;
-  border: 1px solid var(--color-border-default);
-  background: rgba(0,0,0,0.55);
+  padding: 4px 10px; border: 1px solid var(--color-border-default);
+  background: rgba(0,0,0,0.4);
 }
 .tech__visual-foot {
-  position: absolute; bottom: 16px; left: 20px; right: 20px; z-index: 2;
+  position: absolute; bottom: var(--space-5); left: var(--space-5);
+  right: var(--space-5); z-index: 2;
   font-family: var(--font-mono); font-size: 10px;
-  letter-spacing: 0.12em; color: var(--color-text-muted); text-transform: uppercase;
+  letter-spacing: 1.5px; color: var(--color-text-muted); text-transform: uppercase;
 }
 
-/* ── spec table ── */
-.spec-table {
-  border-top: 1px solid var(--color-border-subtle);
-  margin-top: auto;   /* 텍스트 블록 하단에 자동 붙음 */
+.tech__body-text {
+  font-family: var(--font-body); font-size: var(--text-base);
+  font-weight: 400; color: var(--color-text-secondary);
+  line-height: 1.85; margin-bottom: var(--space-7);
+  word-break: keep-all; max-width: 100%; letter-spacing: 0;
 }
+
+.spec-table { border-top: 1px solid var(--color-border-subtle); }
 .spec-row {
-  display: grid;
-  grid-template-columns: 148px 1fr;
-  align-items: baseline;
-  padding: 13px 0;
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: var(--space-4) 0;
   border-bottom: 1px solid var(--color-border-subtle);
-  gap: 16px;
+  gap: var(--space-5);
 }
 .spec-row__key {
   font-family: var(--font-mono); font-size: 10px;
-  letter-spacing: 0.12em; color: var(--color-text-muted);
-  text-transform: uppercase; white-space: nowrap;
+  letter-spacing: 1.5px; color: var(--color-text-tertiary);
+  text-transform: uppercase; white-space: nowrap; flex-shrink: 0;
 }
 .spec-row__val {
-  font-family: var(--font-body); font-size: 14px;
-  font-weight: 500; letter-spacing: 0; color: var(--color-text-secondary);
-  text-align: right;
+  font-family: var(--font-body); font-size: 15px;
+  font-weight: 600; letter-spacing: 0; color: #fff; text-align: right;
   word-break: keep-all;
 }
 
-/* TIMELINE → UNIFIED SYSTEM */
+/* ═══════════════════════════════════════════
+   TIMELINE
+   ═══════════════════════════════════════════ */
+.timeline { margin-top: var(--space-9); }
+.timeline__row {
+  display: grid; grid-template-columns: 72px 52px 1fr;
+  align-items: start; padding: var(--space-7) 0;
+  border-top: 1px solid var(--color-border-subtle);
+  gap: var(--space-5);
+}
+.timeline__row:last-child { border-bottom: 1px solid var(--color-border-subtle); }
+.timeline__year {
+  font-family: var(--font-display); font-size: 24px;
+  font-weight: 300; letter-spacing: 0.04em;
+  color: var(--color-text-tertiary); padding-top: 4px;
+}
+.timeline__icon { width: 52px; display: flex; flex-direction: column; align-items: center; }
+.timeline__icon svg { width: 32px; height: 32px; }
+.timeline__icon-line {
+  flex: 1; width: 1px; background: var(--color-border-default);
+  margin-top: var(--space-3); min-height: 36px;
+}
+.timeline__event-title {
+  font-family: var(--font-body); font-size: 16px;
+  font-weight: 600; letter-spacing: 0; text-transform: none;
+  color: #fff; margin-bottom: var(--space-3); line-height: 1.5;
+  word-break: keep-all;
+}
+.timeline__event-body {
+  font-family: var(--font-body); font-size: var(--text-sm);
+  font-weight: 400; color: var(--color-text-secondary);
+  line-height: 1.55; word-break: keep-all; letter-spacing: 0;
+}
 
 /* ═══════════════════════════════════════════
    CTA
@@ -809,7 +903,7 @@ input:focus-visible,
 .cta-section__inner {
   position: relative; z-index: 2;
   max-width: var(--max-width); margin: 0 auto;
-  padding-left: var(--page-gutter); padding-right: var(--page-gutter);
+  padding: clamp(80px,10vw,140px) var(--page-gutter);
   display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
   gap: var(--col-gap); align-items: center;
 }
@@ -824,7 +918,7 @@ input:focus-visible,
 .cta-section__sub {
   font-family: var(--font-body); font-size: var(--text-lg); font-weight: 400;
   color: var(--color-text-secondary);
-  margin-bottom: var(--space-6); line-height: 1.85;
+  margin-bottom: var(--space-6); line-height: 1.55;
   word-break: keep-all; letter-spacing: 0;
   max-width: 100%;
 }
@@ -835,6 +929,7 @@ input:focus-visible,
 
 /* 마침표 단위 문장 분리 — 전역 유틸리티 */
 .line { display: block; }
+.line + .line { margin-top: 0.35em; }
 .cta-section__divider { width: 48px; height: 1px; background: var(--color-accent); margin-bottom: var(--space-6); opacity: 0.6; }
 .cta-section__contact { border-top: 1px solid var(--color-border-subtle); margin-top: 0; }
 .cta-section__contact-row {
@@ -1018,7 +1113,8 @@ input:focus-visible,
     background: rgba(0,0,0,0.6);
   }
 
-  .sec-intro,
+  .about__grid,
+  .principles__intro,
   .products__header,
   .tech__grid { grid-template-columns: 1fr; gap: var(--space-7); }
 
@@ -1039,7 +1135,7 @@ input:focus-visible,
   .stat:nth-child(3), .stat:nth-child(4) { border-top: 1px solid var(--color-border-subtle); }
   .stat:nth-child(3) { border-right: 1px solid var(--color-border-subtle); }
 
-  /* tech__visual-wrap height: stretch */
+  .tech__visual-wrap { height: 360px; }
   .cta-section__inner { grid-template-columns: 1fr; padding: 80px var(--page-gutter); }
   .footer__grid { grid-template-columns: 1fr 1fr; }
 }
@@ -1067,10 +1163,9 @@ input:focus-visible,
   .track__title { font-size: clamp(22px, 5vw, 30px); }
   .track__body { max-width: 100%; }
 
-
+  .tech__visual-wrap { height: 260px; }
   .tech__grid { gap: var(--space-6); }
 
-  .tech__visual-wrap { min-height: 260px; }
   .timeline__row { grid-template-columns: 52px 40px 1fr; gap: var(--space-3); }
   .timeline__icon svg { width: 26px; height: 26px; }
   .timeline__year { font-size: 18px; }
@@ -1119,7 +1214,7 @@ input:focus-visible,
   .track__viz { height: 160px; }
   .track__title { font-size: clamp(20px, 6vw, 26px); }
 
-
+  .tech__visual-wrap { height: 200px; }
   .timeline__row { grid-template-columns: 40px 28px 1fr; gap: var(--space-2); }
   .timeline__year { font-size: 15px; }
   .timeline__event-title { font-size: 14px; }
@@ -1575,7 +1670,7 @@ input:focus-visible,
 .team__grid {
   display: flex; flex-direction: column;
   border: 1px solid var(--color-border-subtle);
-  margin-top: 0;
+  margin-top: var(--space-7);
 }
 
 .team-card {
@@ -1993,295 +2088,603 @@ input:focus-visible,
 
 
 /* ═══════════════════════════════════════════
-   UNIFIED SECTION LAYOUT SYSTEM  v4
+   V23 — TEXT LAYOUT TIGHTENING
+   B2B용 텍스트 폭·행간·타임라인 간격 정리
    ═══════════════════════════════════════════ */
-
 :root {
-  --max-width:       1200px;
-  --sec-v-pad:       clamp(52px, 6.5vw, 80px);
-  --sec-v-pad-cta:   clamp(80px, 10vw, 120px); /* CTA 전용 */
-  --intro-col-left:  300px;
-  --intro-col-right: 1fr;
-  --intro-gap:       clamp(40px, 5vw, 80px);
-  --intro-mb:        clamp(28px, 3.5vw, 48px);
-  --body-lh:         1.72;
+  --max-width: 1120px;
+  --measure-xs: 520px;
+  --measure-sm: 620px;
+  --measure-md: 720px;
+  --measure-lg: 840px;
 }
 
-/* ── 섹션 공통 패딩 ── */
-.section {
-  padding: var(--sec-v-pad) 0;   /* 세로만 — 가로는 section__inner 담당 */
+/* 문장 단위 줄바꿈은 유지하되, 문장 사이가 과하게 벌어지지 않도록 축소 */
+.line + .line { margin-top: 0.54em; }
+
+/* 공통 본문 폭과 행간 정리 */
+.body-copy,
+.body-copy--lead,
+.body-copy--sub,
+.tech__body-text,
+.track__body,
+.product-card__desc,
+.timeline__event-body,
+.cta-section__sub,
+.cta-section__card-desc,
+.proj-card__desc,
+.proj-cta-banner__sub,
+.team-card__summary {
+  line-height: 1.72;
 }
 
-/* ─────────────────────────────────────────
-   sec-intro — 섹션 헤더 2컬럼 공통 패턴
-   왼쪽: label + heading  |  오른쪽: body copy
-   ───────────────────────────────────────── */
-.sec-intro {
-  display: grid;
-  grid-template-columns: var(--intro-col-left) var(--intro-col-right);
-  gap: var(--intro-gap);
-  align-items: start;          /* 양쪽 상단 기준 고정 */
-  margin-bottom: var(--intro-mb);
-}
-.sec-intro__left { /* label + heading */ }
-.sec-intro__right {
-  max-width: 560px;
-  /* label(~15px) + margin-bottom(12px) = 27px
-     → heading 첫 줄과 body-copy 첫 줄을 시각적으로 같은 높이에 정렬 */
-  padding-top: 27px;
+.body-copy,
+.body-copy--lead,
+.body-copy--sub,
+.tech__body-text,
+.cta-section__sub,
+.cta-section__card-desc,
+.proj-cta-banner__sub {
+  max-width: var(--measure-md);
 }
 
-/* ── label ── */
+@media (min-width: 1025px) {
+  .section { padding-top: clamp(76px, 8vw, 112px); padding-bottom: clamp(76px, 8vw, 112px); }
+
+  .about__grid,
+  .principles__intro,
+  .products__header {
+    grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(40px, 5vw, 72px);
+  }
+
+  .about__grid > div:last-child,
+  .principles__intro > div:last-child,
+  .products__header > div:last-child {
+    padding-top: 36px;
+    max-width: var(--measure-md);
+  }
+
+  .tech__grid,
+  .cta-section__inner {
+    grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+    gap: clamp(40px, 5vw, 68px);
+  }
+
+  .track__body,
+  .track__principles,
+  .track__product,
+  .product-card__desc,
+  .product-card__meta {
+    max-width: var(--measure-md);
+  }
+
+  /* History section: 넓게 퍼지는 문단을 좁히고, 연도/아이콘/본문 그리드를 고정 */
+  #history .section__inner {
+    max-width: 1040px;
+  }
+
+  #history .heading-xl {
+    margin-bottom: 0;
+  }
+
+  .timeline {
+    margin-top: 68px;
+    max-width: 980px;
+  }
+
+  .timeline__row {
+    grid-template-columns: 104px 34px minmax(0, 760px);
+    gap: 18px;
+    padding: 36px 0 34px;
+  }
+
+  .timeline__year {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.45;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+
+  .timeline__icon {
+    width: 34px;
+  }
+
+  .timeline__icon svg {
+    width: 22px;
+    height: 22px;
+    opacity: 0.92;
+  }
+
+  .timeline__icon-line {
+    min-height: 28px;
+    margin-top: 9px;
+  }
+
+  .timeline__content {
+    max-width: 760px;
+  }
+
+  .timeline__event-title {
+    font-size: 15px;
+    line-height: 1.45;
+    margin-bottom: 10px;
+  }
+
+  .timeline__event-body {
+    max-width: 740px;
+    font-size: 14px;
+    line-height: 1.68;
+    color: var(--color-text-secondary);
+  }
+
+  .timeline__event-body .line + .line {
+    margin-top: 0.46em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .line + .line { margin-top: 0.48em; }
+  .timeline__year { white-space: nowrap; }
+}
+
+
+
+/* ═══════════════════════════════════════════
+   V24 — COMPACT B2B TEXT LAYOUT SYSTEM
+   프로젝트 포트폴리오 샘플과 동일한 폭/행간/간격 기준 적용
+   ═══════════════════════════════════════════ */
+:root {
+  --measure-copy: 520px;
+  --measure-copy-wide: 620px;
+  --intro-bottom: clamp(56px, 6vw, 76px);
+}
+
+/* 공통 섹션 타이틀: 얇게 흩어진 인상 대신 B2B 문서형 블록으로 정리 */
 .label {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-mono);
+  margin-bottom: 15px;
   font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-  opacity: 0.85;
-  margin-bottom: 12px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  color: rgba(195,217,243,0.9);
 }
 .label::before {
-  content: '';
-  display: block;
-  width: 18px;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.65;
-  flex-shrink: 0;
+  width: 20px;
+  opacity: 0.72;
 }
 
-/* ── heading-xl ── */
 .heading-xl {
-  font-family: var(--font-display);
-  font-size: clamp(34px, 3.6vw, 50px);
+  font-family: var(--font-body);
+  font-size: clamp(38px, 4vw, 50px);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.16;
+  text-transform: none;
+  max-width: var(--measure-copy);
+  margin: 0;
+}
+
+.body-copy,
+.body-copy--lead,
+.body-copy--sub,
+.tech__body-text,
+.cta-section__sub,
+.cta-section__card-desc,
+.proj-cta-banner__sub,
+.timeline__event-body,
+.team-card__summary {
+  font-family: var(--font-body);
+  letter-spacing: -0.015em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.body-copy {
+  max-width: var(--measure-copy);
+  font-size: 15px;
+  line-height: 1.76;
+  color: var(--color-text-secondary);
+}
+.body-copy--lead {
+  max-width: var(--measure-copy);
+  font-size: 16px;
+  line-height: 1.74;
+  font-weight: 500;
+  color: #fff;
+}
+.body-copy--sub {
+  max-width: var(--measure-copy);
+  font-size: 13px;
+  line-height: 1.68;
+  color: var(--color-text-muted);
+  margin-top: 18px;
+  padding-top: 14px;
+}
+.line + .line { margin-top: 0.42em; }
+
+@media (min-width: 1025px) {
+  /* 기존 2열 인트로를 샘플처럼 하나의 좁은 텍스트 블록으로 통일 */
+  .about__grid,
+  .principles__intro,
+  .products__header {
+    grid-template-columns: minmax(0, var(--measure-copy));
+    gap: 20px;
+    align-items: start;
+    margin-bottom: var(--intro-bottom);
+  }
+
+  .about__grid > div:last-child,
+  .principles__intro > div:last-child,
+  .products__header > div:last-child {
+    padding-top: 0;
+    max-width: var(--measure-copy);
+  }
+
+  .about__grid .body-copy,
+  .about__grid .body-copy--lead,
+  .principles__intro .body-copy,
+  .principles__intro .body-copy--lead,
+  .products__header .body-copy,
+  .products__header .body-copy--lead {
+    margin-bottom: 0 !important;
+  }
+
+  .about__grid .body-copy + .body-copy,
+  .principles__intro .body-copy + .body-copy,
+  .products__header .body-copy + .body-copy {
+    margin-top: 14px;
+  }
+
+  .about__grid .heading-xl,
+  .principles__intro .heading-xl,
+  .products__header .heading-xl,
+  #history .heading-xl,
+  #team .heading-xl {
+    margin-bottom: 22px;
+  }
+
+  /* 기술 섹션은 시각화와 본문 2열은 유지하되, 본문 폭만 샘플 기준으로 축소 */
+  .tech__grid {
+    grid-template-columns: minmax(420px, 1fr) minmax(0, var(--measure-copy));
+    gap: clamp(48px, 5vw, 72px);
+    align-items: center;
+  }
+  .tech__grid > div:last-child {
+    max-width: var(--measure-copy);
+  }
+  .tech__grid .heading-xl {
+    margin-bottom: 22px !important;
+  }
+  .tech__body-text {
+    max-width: var(--measure-copy);
+    font-size: 15px;
+    line-height: 1.76;
+    margin-bottom: 30px;
+  }
+
+  /* 연혁: 본문 컬럼을 더 좁히고, 연도/아이콘/본문 간격을 고정 */
+  #history .section__inner {
+    max-width: 1120px;
+  }
+  #history .heading-xl {
+    max-width: var(--measure-copy);
+  }
+  .timeline {
+    margin-top: 64px;
+    max-width: 780px;
+  }
+  .timeline__row {
+    grid-template-columns: 92px 34px minmax(0, 560px);
+    gap: 20px;
+    padding: 34px 0 32px;
+  }
+  .timeline__year {
+    font-size: 14px;
+    line-height: 1.35;
+    letter-spacing: 0;
+    white-space: nowrap;
+    padding-top: 1px;
+  }
+  .timeline__content {
+    max-width: 560px;
+  }
+  .timeline__event-title {
+    max-width: 560px;
+    font-size: 15px;
+    line-height: 1.45;
+    margin-bottom: 10px;
+  }
+  .timeline__event-body {
+    max-width: 560px;
+    font-size: 14px;
+    line-height: 1.66;
+  }
+  .timeline__event-body .line + .line {
+    margin-top: 0.42em;
+  }
+
+  /* 프로젝트 포트폴리오 배너: 사용자가 제시한 샘플 텍스트 블록을 기준값으로 확정 */
+  .proj-cta-banner {
+    margin-top: 72px;
+  }
+  .proj-cta-banner__inner {
+    grid-template-columns: minmax(0, var(--measure-copy)) minmax(360px, 1fr);
+    gap: clamp(56px, 6vw, 84px);
+    padding: 46px 52px;
+    align-items: center;
+  }
+  .proj-cta-banner__left {
+    max-width: var(--measure-copy);
+  }
+  .proj-cta-banner__title {
+    font-family: var(--font-body);
+    font-size: clamp(32px, 3.2vw, 42px);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 1.18;
+    text-transform: none;
+    max-width: var(--measure-copy);
+    margin-bottom: 22px;
+  }
+  .proj-cta-banner__sub {
+    max-width: var(--measure-copy);
+    font-size: 15px;
+    line-height: 1.76;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  /* 팀/CTA 섹션도 같은 텍스트 리듬으로 정렬 */
+  #team .section__inner > .label,
+  #history .section__inner > .label {
+    margin-bottom: 15px;
+  }
+  #team .heading-xl {
+    max-width: var(--measure-copy);
+  }
+  .team__grid {
+    margin-top: 64px;
+    max-width: 960px;
+  }
+  .team-card__summary {
+    max-width: 620px;
+    font-size: 14px;
+    line-height: 1.68;
+  }
+
+  .cta-section__inner {
+    grid-template-columns: minmax(0, var(--measure-copy)) minmax(360px, 1fr);
+    gap: clamp(56px, 6vw, 84px);
+    align-items: center;
+  }
+  .cta-section__heading {
+    font-family: var(--font-body);
+    max-width: var(--measure-copy);
+    font-size: clamp(36px, 4vw, 50px);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 1.16;
+    text-transform: none;
+    margin-bottom: 22px;
+  }
+  .cta-section__sub {
+    max-width: var(--measure-copy);
+    font-size: 15px;
+    line-height: 1.76;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 30px;
+  }
+  .cta-section__sub-line + .cta-section__sub-line {
+    margin-top: 0.42em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .heading-xl,
+  .body-copy,
+  .body-copy--lead,
+  .body-copy--sub,
+  .tech__body-text,
+  .cta-section__sub,
+  .proj-cta-banner__sub {
+    max-width: var(--measure-copy);
+  }
+}
+
+
+
+/* ═══════════════════════════════════════════════════════════
+   LAYOUT SYSTEM — B2B 좌정렬 · 전체 일관성
+   HTML 무수정, 이 블록이 레이아웃 전체를 통제
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  --g:      clamp(24px, 5vw, 72px);   /* 페이지 좌우 여백 */
+  --sv:     clamp(56px, 7vw, 88px);   /* 섹션 상하 패딩 */
+  --cp:     clamp(18px, 2vw, 24px);   /* 카드 내부 패딩 */
+  --cg:     clamp(32px, 4vw, 56px);   /* 컬럼 간격 */
+  --lh:     1.55;
+}
+
+/* ── 섹션: 세로만, 가로는 inner 담당 ── */
+.section { padding: var(--sv) 0; }
+.section__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--g);
+}
+.stats-band__inner { padding-left: var(--g); padding-right: var(--g); }
+.site-footer { padding-left: 0; padding-right: 0; }
+.footer__grid  { padding-left: var(--g); padding-right: var(--g); }
+.footer__bottom { padding-left: var(--g); padding-right: var(--g); }
+
+/* ── 전체 좌정렬 ── */
+.stat { text-align: left; }
+
+/* ── heading ── */
+.heading-xl {
+  font-size: clamp(26px, 3vw, 38px);
   font-weight: 300;
+  line-height: 1.18;
   letter-spacing: 0.02em;
-  line-height: 1.12;
   text-transform: uppercase;
   color: #fff;
-  margin: 0;
   word-break: keep-all;
+  margin-bottom: 0;
 }
 
 /* ── body copy ── */
 .body-copy {
-  font-size: 15px;
-  line-height: var(--body-lh);
-  color: var(--color-text-secondary);
-  letter-spacing: 0;
-  word-break: keep-all;
-}
-/* sec-intro 오른쪽 첫 번째 p가 body-copy일 때도 동일 오프셋 보정 */
-.sec-intro__right > .body-copy:first-child {
-  margin-top: -0.15em;
+  font-size: 14px;
+  line-height: var(--lh);
+  max-width: none;
 }
 .body-copy--lead {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.65;
-  color: #fff;
-  letter-spacing: 0;
-  word-break: keep-all;
-  /* 폰트 상단 여백(cap height offset) 보정 — 첫 줄을 heading과 시각적으로 정렬 */
-  margin-top: -0.18em;
-}
-.body-copy--sub {
-  font-size: 13px;
-  line-height: 1.68;
-  color: var(--color-text-muted);
-  letter-spacing: 0;
-  margin-top: 16px;
-  padding-top: 14px;
-  border-top: 1px solid var(--color-border-subtle);
-}
-.body-copy + .body-copy,
-.body-copy--lead + .body-copy {
-  margin-top: 14px;
-}
-
-/* ── .line 간격 단일화 ── */
-.line + .line { margin-top: 0.48em; }
-
-/* ── principle, track 본문 — body-copy와 동일 리듬 ── */
-.principle__body {
   font-size: 15px;
-  line-height: var(--body-lh);
+  line-height: var(--lh);
+  max-width: none;
 }
-.track__body {
-  font-size: 15px;
-  line-height: var(--body-lh);
+.body-copy--sub { max-width: none; font-size: 13px; line-height: 1.55; margin-top: 0.7em; padding-top: 0.7em; }
+.body-copy + .body-copy { margin-top: 0.7em; }
+.body-copy--lead + .body-copy { margin-top: 0.7em; }
+
+/* ── label ── */
+.label { margin-bottom: 8px; }
+
+/* ── stat 크기 ── */
+.stat__value { font-size: clamp(28px, 3.5vw, 42px); margin-bottom: 6px; }
+
+/* ════════════════════════════════════════
+   섹션 헤더: 2컬럼 비율 맞게 (레이블+제목 | 본문)
+   left: 너무 좁으면 heading이 줄바꿈 폭발 → 충분히 넓게
+   ════════════════════════════════════════ */
+.about__grid,
+.principles__intro,
+.products__header {
+  display: grid;
+  grid-template-columns: minmax(280px, 2fr) minmax(0, 3fr);
+  gap: var(--cg);
+  align-items: start;
+  margin-bottom: clamp(28px, 3.5vw, 44px);
+}
+.about__grid > div:first-child,
+.principles__intro > div:first-child,
+.products__header > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.about__grid > div:last-child,
+.principles__intro > div:last-child,
+.products__header > div:last-child {
+  padding-top: 0;
 }
 
-/* ── why-quantum 배경 — alt 섹션 내에서 대비 확보 ── */
-.why-quantum {
-  background: var(--color-canvas);  /* surface-subtle 대신 canvas로 대비 강화 */
-  border: 1px solid var(--color-border-default);
-}
-.why-quantum__side {
-  background: var(--color-surface-subtle);
+/* ── History · Team: 단순 스택 (label → heading → 콘텐츠) ── */
+#history .heading-xl,
+#team    .heading-xl {
+  margin-bottom: clamp(24px, 3vw, 36px);
 }
 
-/* ─────────────────────────────────────────
-   Technology — 단일 2컬럼 (시각화 | 텍스트+스펙)
-   좌우 높이를 동일하게 stretch
-   ───────────────────────────────────────── */
+/* ════════════════════════════════════════
+   Technology
+   ════════════════════════════════════════ */
 .tech__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(32px, 4vw, 64px);
-  align-items: stretch;   /* 양 컬럼 동일 높이 */
+  gap: var(--cg);
+  align-items: stretch;
 }
-.tech__text {
+.tech__visual-wrap { min-height: 360px; }
+.tech__grid > div:last-child {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding: 0;
 }
-.tech__text .label {
-  margin-bottom: 10px;
-}
-.tech__text .heading-xl {
-  font-size: clamp(28px, 3vw, 40px);   /* 섹션 heading 비해 약간 작게 — B2B 정돈감 */
-  margin-bottom: 20px;
-}
-.tech__text .body-copy--lead {
-  font-size: 15px;
+.tech__grid > div:last-child .heading-xl {
+  font-size: clamp(20px, 2.2vw, 26px);
   margin-bottom: 12px;
 }
-.tech__text .body-copy {
+.tech__grid > div:last-child .tech__body-text {
   font-size: 14px;
-  color: var(--color-text-tertiary);
-  margin-bottom: 28px;
-}
-
-/* ─────────────────────────────────────────
-   CTA — 전용 패딩 변수 사용
-   ───────────────────────────────────────── */
-.cta-section__inner {
-  padding-top: var(--sec-v-pad-cta) !important;
-  padding-bottom: var(--sec-v-pad-cta) !important;
-}
-
-/* ─────────────────────────────────────────
-   History — timeline
-   ───────────────────────────────────────── */
-.timeline {
-  margin-top: 0;
-  border-top: 1px solid var(--color-border-subtle);
-}
-.timeline__row {
-  display: grid;
-  grid-template-columns: 100px 36px 1fr;
-  gap: 20px;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--color-border-subtle);
-  align-items: start;
-}
-.timeline__year {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  color: var(--color-text-tertiary);
-  padding-top: 3px;
-  white-space: nowrap;
-}
-.timeline__icon {
-  width: 36px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.timeline__icon svg { width: 22px; height: 22px; }
-.timeline__icon-line {
+  line-height: var(--lh);
+  margin-bottom: 0;
   flex: 1;
-  width: 1px;
-  background: var(--color-border-default);
-  margin-top: 6px;
-  min-height: 18px;
 }
-.timeline__event-title {
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0;
-  color: #fff;
-  margin-bottom: 6px;
-  line-height: 1.4;
-  word-break: keep-all;
-}
-.timeline__event-body {
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--color-text-secondary);
-  line-height: 1.7;
-  word-break: keep-all;
-  letter-spacing: 0;
-}
-.timeline__event-body .line + .line { margin-top: 0.44em; }
+.spec-table { margin-top: auto; border-top: 1px solid var(--color-border-subtle); }
+.spec-row   { padding: 10px 0; }
+.spec-row__val { font-size: 13px; }
 
-/* ─────────────────────────────────────────
-   Team grid
-   ───────────────────────────────────────── */
-.team__grid {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--color-border-subtle);
-  margin-top: 0;
-}
-.team-card__summary {
-  font-size: 14px;
-  line-height: 1.72;
-  letter-spacing: 0;
-  word-break: keep-all;
-}
+/* ════════════════════════════════════════
+   카드 패딩 통일
+   ════════════════════════════════════════ */
+.product-card        { padding: var(--cp); min-height: 0; }
+.product-card--rd    { padding: var(--cp) calc(var(--cp) * 1.5); }
+.principle           { padding: var(--cp); }
+.track               { padding: var(--cp); }
+.why-quantum__side   { padding: var(--cp) calc(var(--cp) * 1.4); }
+.team-card__left     { padding: var(--cp) calc(var(--cp) * 1.4); }
+.team-card__right    { padding: var(--cp) calc(var(--cp) * 1.4); }
+.cta-section__right  { padding: var(--cp) calc(var(--cp) * 1.4); }
 
-/* ─────────────────────────────────────────
-   Responsive
-   ───────────────────────────────────────── */
+/* 카드 내 제목 */
+.product-card__title { font-size: 17px; }
+.principle__title    { font-size: 15px; }
+.track__title        { font-size: clamp(17px, 1.8vw, 21px); }
+.team-card__name     { font-size: 15px; }
+
+/* 시각화 높이 */
+.principle__viz  { height: 160px; }
+.track__viz      { height: 160px; }
+.why-quantum__viz-wrap { height: 260px; }
+.why-quantum__side-stat { font-size: clamp(28px, 3.5vw, 40px); }
+
+/* Timeline */
+.timeline__row {
+  grid-template-columns: 80px 36px 1fr;
+  padding: 18px 0;
+  gap: 16px;
+}
+.timeline__year        { font-size: 12px; color: var(--color-text-tertiary); }
+.timeline__event-title { font-size: 13px; margin-bottom: 4px; }
+.timeline__event-body  { font-size: 13px; line-height: 1.55; }
+
+/* ── principles__grid 하단 여백 ── */
+.principles__grid { margin-bottom: clamp(28px, 3.5vw, 44px); }
+
+/* ── why-quantum margin-bottom ── */
+.why-quantum { margin-bottom: clamp(28px, 3.5vw, 44px); }
+
+/* ── Technology spec-table: auto 공백 제거 ── */
+.spec-table { margin-top: 20px; border-top: 1px solid var(--color-border-subtle); }
+
+/* ── body-copy 사이 간격 (inline style 제거 후 담당) ── */
+.body-copy + .body-copy       { margin-top: 10px; }
+.body-copy--lead + .body-copy { margin-top: 10px; }
+
+/* ── 반응형 ── */
 @media (max-width: 1024px) {
-  .sec-intro {
+  .about__grid,
+  .principles__intro,
+  .products__header,
+  .tech__grid {
     grid-template-columns: 1fr;
     gap: 20px;
-    align-items: start;
   }
-  .sec-intro__right {
-    padding-top: 0;      /* 1컬럼에서는 오프셋 불필요 */
-    padding-bottom: 0;
-    max-width: 100%;
-  }
-  .tech__grid { grid-template-columns: 1fr; }
-  .tech__visual-wrap { min-height: 320px; }
-  .timeline__row {
-    grid-template-columns: 80px 30px 1fr;
-    gap: 14px;
-    padding: 18px 0;
-  }
+  .tech__visual-wrap { min-height: 240px; }
+  .spec-table { margin-top: 16px; }
 }
-
 @media (max-width: 768px) {
-  :root { --intro-mb: 24px; }
-  .heading-xl { font-size: clamp(28px, 8vw, 42px); }
-  .timeline__row {
-    grid-template-columns: 56px 26px 1fr;
-    gap: 10px;
-    padding: 16px 0;
-  }
-  .timeline__year { font-size: 11px; }
-  .timeline__event-title { font-size: 13px; }
-  .timeline__event-body { font-size: 12px; }
+  :root { --sv: 48px; }
+  .heading-xl { font-size: clamp(22px, 6vw, 30px); }
+  .timeline__row { grid-template-columns: 52px 28px 1fr; padding: 14px 0; }
 }
-
 @media (max-width: 480px) {
-  .sec-intro { gap: 16px; }
-  .heading-xl { font-size: clamp(24px, 9vw, 34px); }
-  .timeline__row { grid-template-columns: 40px 22px 1fr; gap: 8px; padding: 14px 0; }
+  :root { --g: 20px; }
+  .heading-xl { font-size: clamp(20px, 7vw, 26px); }
 }
-
+/* ═══════════════════════════════════════════════════════════ */
 </style>
 </head>
 <body>
@@ -2362,23 +2765,20 @@ input:focus-visible,
 <!-- ABOUT -->
 <section class="section" id="about" aria-labelledby="about-heading">
   <div class="section__inner">
-    <div class="sec-intro">
-      <div class="sec-intro__left">
+    <div class="about__grid">
+      <div>
         <span class="label">회사 소개</span>
-        <h2 class="heading-xl" id="about-heading">기업 문제를<br>겨냥한 양자<br>소프트웨어</h2>
+        <h2 class="heading-xl" id="about-heading">기업 문제를 겨냥한<br>양자 소프트웨어</h2>
       </div>
-      <div class="sec-intro__right">
+      <div>
         <p class="body-copy body-copy--lead">
           파워드랩은 양자컴퓨팅을 연구 주제가 아니라 기업이 검증하고 도입할 수 있는 소프트웨어로 전환합니다.
         </p>
         <p class="body-copy">
-          복잡한 최적화, 확률 무결성, 블록체인 신뢰성처럼 기존 방식만으로 설명·검증하기 어려운 문제를 양자-고전 하이브리드 구조로 모델링합니다.
-        </p>
-        <p class="body-copy">
-          헬스케어·게임·Web3 분야의 자체 제품과 구축형 프로젝트를 통해 <strong>PoC, SaaS 도입, 공동 R&amp;D</strong>까지 연결합니다.
+          복잡한 최적화·확률 무결성·블록체인 신뢰성 문제를 양자-고전 하이브리드 구조로 모델링하고, PoC·SaaS 도입·공동 R&amp;D로 연결합니다.
         </p>
         <p class="body-copy body-copy--sub">
-          2024년 8월 법인 설립 · 2025년 초기창업패키지 선정 · SpinQ MOU · 양자-고전 하이브리드 신약 후보 선별 알고리즘 특허 출원
+          2024년 법인 설립 · 2025년 초기창업패키지 선정 · SpinQ MOU · 신약 후보 선별 알고리즘 특허 출원
         </p>
       </div>
     </div>
@@ -2414,20 +2814,19 @@ input:focus-visible,
 <!-- QUANTUM -->
 <section class="section section--alt" id="quantum" aria-labelledby="quantum-heading">
   <div class="section__inner">
-    <div class="sec-intro">
-      <div class="sec-intro__left">
+    <div class="principles__intro">
+      <div>
         <span class="label">양자 기술</span>
-        <h2 class="heading-xl" id="quantum-heading">도입 가능한<br>양자 기술<br>구조</h2>
+        <h2 class="heading-xl" id="quantum-heading">도입 가능한<br>양자 기술 구조</h2>
       </div>
-      <div class="sec-intro__right">
+            <div>
         <p class="body-copy body-copy--lead">
-          핵심은 “양자컴퓨터가 모든 것을 대체한다”가 아니라, 양자 연산이 유리한 문제를 찾아 기존 시스템과 결합하는 것입니다.
+          양자 연산이 유리한 문제를 찾아 기존 시스템과 결합하는 것이 핵심입니다.
         </p>
         <p class="body-copy">
-          <span class="line">파워드랩은 산업 데이터를 QUBO·Ising·CQM 등 계산 가능한 문제 형식으로 정리하고, 고전 컴퓨팅과 양자 알고리즘을 함께 사용하는 하이브리드 파이프라인을 설계합니다.</span>
-          <span class="line">기업은 기술 검토, PoC, API/SaaS 도입 단계에서 적용 가능성과 비용 대비 효과를 먼저 검증할 수 있습니다.</span>
+          산업 데이터를 QUBO·Ising·CQM 형식으로 정리하고, PoC·API·SaaS 단계로 적용 가능성을 검증합니다.
         </p>
-      </div>
+            </div>
     </div>
 
     <!-- WHY QUANTUM — interactive bit-count visualization -->
@@ -2580,27 +2979,18 @@ input:focus-visible,
 <section class="section" id="technology" aria-labelledby="tech-heading">
   <div class="section__inner">
     <div class="tech__grid">
-
-      <!-- 왼쪽: 캔버스 시각화 — stretch로 오른쪽 높이에 자동 맞춤 -->
-      <div class="tech__visual-wrap" style="min-height: 480px;">
+      <div class="tech__visual-wrap">
         <div class="tech__visual-overlay">
           <span class="tech__visual-tag">Hybrid Pipeline</span>
           <span class="tech__visual-tag">Quantum × Classical</span>
         </div>
         <canvas id="js-tech-canvas" aria-hidden="true"></canvas>
-        <p class="tech__visual-foot">양자-고전 하이브리드 최적화 파이프라인</p>
+        <p class="tech__visual-foot">양자-고전 최적화 흐름 시뮬레이션</p>
       </div>
-
-      <!-- 오른쪽: 텍스트 + 스펙 테이블 -->
-      <div class="tech__text">
+      <div>
         <span class="label">기술 기반</span>
-        <h2 class="heading-xl" id="tech-heading">하이브리드<br>아키텍처</h2>
-        <p class="body-copy body-copy--lead">
-          파워드랩의 제품은 산업 데이터를 계산 가능한 문제 형식으로 변환하는 모델링 계층, 양자/고전 알고리즘 실행 계층, 결과 검증 및 API 제공 계층으로 구성됩니다.
-        </p>
-        <p class="body-copy">
-          기업은 기존 시스템을 교체하지 않고도 PoC, API 연동, SaaS 방식으로 단계적으로 도입할 수 있습니다. 결과는 Score, Confidence, Fallback Reason 형태로 정리해 현업 검토가 가능하도록 제공합니다.
-        </p>
+        <h2 class="heading-xl" id="tech-heading">도입을 위한<br>하이브리드 아키텍처</h2>
+        <p class="tech__body-text"><span class="line">파워드랩의 제품은 산업 데이터를 계산 가능한 문제 형식으로 변환하는 모델링 계층, 양자/고전 알고리즘 실행 계층, 결과 검증 및 API 제공 계층으로 구성됩니다.</span><span class="line">기업은 기존 시스템을 모두 교체하지 않고도 PoC, API 연동, 전용 SaaS 방식으로 단계적으로 도입할 수 있습니다.</span><span class="line">결과는 Score, Confidence, Fallback Reason 등 의사결정에 필요한 형태로 정리해 현업 검토가 가능하도록 제공합니다.</span></p>
         <div class="spec-table" role="table" aria-label="기술 사양">
           <div class="spec-row" role="row">
             <span class="spec-row__key">Core Method</span>
@@ -2611,7 +3001,7 @@ input:focus-visible,
             <span class="spec-row__val">Quantum-Classical Hybrid</span>
           </div>
           <div class="spec-row" role="row">
-            <span class="spec-row__key">QRNG</span>
+            <span class="spec-row__key">QRNG Integration</span>
             <span class="spec-row__val">Quantum API Layer</span>
           </div>
           <div class="spec-row" role="row">
@@ -2624,7 +3014,6 @@ input:focus-visible,
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -2632,22 +3021,10 @@ input:focus-visible,
 <hr class="divider">
 
 <!-- HISTORY -->
-<section class="section section--alt" id="history" aria-labelledby="history-heading">
+<section class="section" id="history" aria-labelledby="history-heading">
   <div class="section__inner">
-    <div class="sec-intro">
-      <div class="sec-intro__left">
-        <span class="label">연혁</span>
-        <h2 class="heading-xl" id="history-heading">파워드랩의<br>주요 연혁</h2>
-      </div>
-      <div class="sec-intro__right">
-        <p class="body-copy body-copy--lead">
-          2024년 창업부터 특허 출원, 글로벌 거래소 상장, 정부 지원사업 선정까지 — 파워드랩이 걸어온 실증 이력입니다.
-        </p>
-        <p class="body-copy">
-          각 프로젝트는 연구 단계를 넘어 실제 배포·운영·매출로 이어진 결과물입니다.
-        </p>
-      </div>
-    </div>
+    <span class="label">연혁</span>
+    <h2 class="heading-xl" id="history-heading">파워드랩의<br>주요 연혁</h2>
 
     <div class="timeline" role="list">
       <div class="timeline__row" role="listitem">
@@ -2789,22 +3166,10 @@ input:focus-visible,
 <hr class="divider">
 
 <!-- TEAM -->
-<section class="section" id="team" aria-labelledby="team-heading">
+<section class="section section--alt" id="team" aria-labelledby="team-heading">
   <div class="section__inner">
-    <div class="sec-intro">
-      <div class="sec-intro__left">
-        <span class="label">주요 구성원</span>
-        <h2 class="heading-xl" id="team-heading">파워드랩을<br>만들어가는<br>사람들</h2>
-      </div>
-      <div class="sec-intro__right">
-        <p class="body-copy body-copy--lead">
-          양자컴퓨팅, 바이오메디컬 AI, 블록체인을 실전에서 구현해 온 팀이 함께합니다.
-        </p>
-        <p class="body-copy">
-          연구 성과와 산업 현장 경험을 동시에 보유한 구성원들이 파워드랩의 기술 기반을 만들어가고 있습니다.
-        </p>
-      </div>
-    </div>
+    <span class="label">주요 구성원</span>
+    <h2 class="heading-xl" id="team-heading">파워드랩을<br>만들어가는 사람들</h2>
 
     <div class="team__grid">
 
